@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+
+  <title>HazeMaze</title>
+</head>
+<style>
+  *{
+    margin:0;
+    padding:0;
+  }
+  body{
+    overflow: hidden;
+    background-color: #202020;
+    padding : 5px;
+  }
+
+  canvas{
+    border: 5px solid #80cc00;
+    margin: 10px;
+  }
+
+  log{
+    border: 5px solid #80cc00;
+    margin: 10px;
+    color: #80cc00;
+  }
+
+</style>
+<body>
+<script src="src/js/Head.js"></script>
+
+<script src="src/js/Matrix.js"></script>
+<script src="src/js/Vector.js"></script>
+
+<script src="src/js/Camera.js"></script>
+<script src="src/js/Scene.js"></script>
+
+<script src="src/js/Canvas.js"></script>
+
+<script src="src/js/Point.js"></script>
+<script src="src/js/Segment.js"></script>
+<script src="src/js/Polygon.js"></script>
+<script src="src/js/Cone.js"></script>
+<script>
+
+  const pi = Math.PI;
+
+  let C3D_1 = new Canvas("canvas_3D_1",600,600);
+  C3D_1.set_origin(1);
+
+  let C2D_1 = new Canvas("canvas_2D_1",300,300);
+  C2D_1.set_origin(1);
+
+  let scene1 = new Scene();
+  scene1.setCamera(
+    0,-10,0,
+    0,0,0);
+  scene1.setView3D(C3D_1);
+  scene1.setView2D(C2D_1);
+
+
+  scene1.add_point(50,-20,0);
+  scene1.add_point(50,0,0);
+  scene1.add_point(50,20,0);
+
+  scene1.add_point(100,-20,20);
+  scene1.add_point(100,0,20);
+  scene1.add_point(100,20,20);
+
+  scene1.add_point(120,-20,-50);
+  scene1.add_point(120,0,-50);
+  scene1.add_point(120,20,-50);
+
+  let A = new Point(120,-20,-120);
+  let B = new Point(-120,20,-80);
+  scene1.add_segment(A,B);
+
+  let X = new Vector(-100,0,-20);
+  let Y = new Vector(-100,0,20);
+  let Z = new Vector(-120,-30,0);
+  scene1.add_polygon(X,Y,Z);
+
+  let X1 = new Vector(-100,0,-20);
+  let Y1 = new Vector(-150,0,00);
+  let Z1 = new Vector(-120,-30,0);
+  scene1.add_polygon(X1,Y1,Z1,lazuli);
+
+  let X2 = new Vector(-100,0,20);
+  let Y2 = new Vector(-150,0,00);
+  let Z2 = new Vector(-120,-30,0);
+  scene1.add_polygon(X2,Y2,Z2,gold);
+
+
+
+
+/*
+  let O = new Vector(0,0,0);
+  let V = new Vector(0,0,1);
+
+  let P1 = new Vector(-20,0,150);
+  let P2 = new Vector(-20,1000,150);
+
+  let R1 = 10;
+  let R2 = 5;
+
+  let Con = new Cone(P1,R1,P2,R2);
+  scene1.add_cone(Con);
+  console.log(Con.intersect(O,V));
+
+  let Ox = new Vector(0,0,10);
+*/
+  window.addEventListener("keydown", event => {
+    scene1.key_event(event.key);
+  });
+
+  //let play = setInterval(function(){scene1.raytrace();},10);
+
+  function repeatOften() {
+    scene1.update();
+    requestAnimationFrame(repeatOften);
+  }
+  requestAnimationFrame(repeatOften);
+
+</script>
+</body>
+</html>

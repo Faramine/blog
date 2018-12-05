@@ -1,0 +1,5 @@
+class Curve{
+  constructor(){
+
+  }
+}
