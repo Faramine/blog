@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 
 
-  <title>HazeMaze</title>
+  <title>3D Engine Test</title>
 </head>
 <style>
   *{
@@ -27,9 +27,16 @@
     margin: 10px;
     color: #80cc00;
   }
-
+  
+  info{
+	color: #80cc00;
+	position: fixed;
+  }
+  
 </style>
 <body>
+
+
 <script src="src/js/Head.js"></script>
 
 <script src="src/js/Matrix.js"></script>
@@ -125,5 +132,7 @@
   requestAnimationFrame(repeatOften);
 
 </script>
+
+<div class="info" style="color:#80cc00">Utilisez les touches fléchées pour vous mouvoir dans l'espace.</div>
 </body>
 </html>
